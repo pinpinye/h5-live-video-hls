@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>videojs-contrib-hls embed</title>
+  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+ <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+</head>
+<body>
+  <video id="my_video" class="video-js vjs-default-skin" controls preload="auto"
+  data-setup='{}'>
+    <source src="http://localhost:8080/hls/test.m3u8" type="application/x-mpegURL">
+  </video>
+</body>
+<script>
+var video = document.getElementById("my_video");
+
+video.addEventListener('progress',function (){
+   console.log("progress")
+},false)
+
+
+video.addEventListener("loadstart", function () {
+   console.log("loadstart")
+          }, false);
+
+video.addEventListener('loadeddata',function (){
+   console.log("loadeddata")
+},false)
+
+  video.addEventListener("canplaythrough", function () {
+      console.log("Ready to play whole video");
+  }, false);
+
+video.addEventListener('waiting',function (){
+   console.log("waiting")
+},false)
+
+video.addEventListener('timeupdate',function (){
+    //当视频的currentTime大于0.1时表示黑屏时间已过，已有视频画面
+    if ( video.currentTime > 0.1){
+      console.log("timeupdate")
+    }
+},false)
+
+
+
+video.addEventListener('playing',function (){
+   console.log("playing")
+},false)
+
+
+ video.addEventListener("volumechange", function () {
+   console.log("你调整了了音量")
+  }, false);
+video.addEventListener('seeking',function (){
+   console.log("seeking")
+},false)
+
+
+video.addEventListener('pause',function (){
+   console.log("pause")
+},false)
+
+
+video.addEventListener('error',function (){
+   console.log("error")
+},false)
+
+
+video.addEventListener('ended',function (){
+   console.log("ended")
+},false)
+
+
+video.addEventListener('emptied',function (){
+   console.log("emptied");
+},false)
+
+video.addEventListener('abort',function (){
+   console.log("abort");
+},false)
+
+video.addEventListener('stalled',function (){
+   console.log("stalled");
+},false)
+</script>
+</html>
